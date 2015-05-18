@@ -1,0 +1,89 @@
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body, html {
+	height: 100%;
+	width: 100%;
+	-webkit-user-select: none;
+	cursor: default;
+	font-family: 'Arial', sans-serif;
+}
+
+#options {
+	color: #efefef;
+	padding: 12px 0px 6px 0px;
+	background: #2980b9;
+	width: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+#options div {
+	display: inline-block;
+	margin-left: 25px;
+	vertical-align: top;
+	line-height: 25px;
+	cursor: pointer;
+}
+
+#options div span {
+	position: relative;
+	display: inline-block;
+	content: '';
+	border: 3px solid #fff;
+	height: 25px;
+	width: 25px;
+	margin-right: 10px;
+}
+
+#options div.selected span:before {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	right: 3px;
+	bottom: 3px;
+	background: rgba(255,255,255,0.7);
+}
+
+#info {
+	color: #1e5f8a;
+	float: right;
+	display: inline-block;
+	background: #3498db;
+	width: 250px;
+	height: 25px;
+	margin-right: 25px;
+	line-height: 25px;
+	padding: 0 10px;
+	text-align: right;
+}
+
+#holder {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: #3498db;
+	text-align: center;
+	white-space: nowrap;
+	z-index: 0;
+}
+
+#holder:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+#holder h1 {
+	color: #1e5f8a;
+	font-size: 3em;
+	display: inline-block;;
+	vertical-align: middle;
+}
