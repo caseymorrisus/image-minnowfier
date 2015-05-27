@@ -1,4 +1,4 @@
 {
-    "addToFolder": false,
-    "replace": true
+    "replace": false,
+    "addToFolder": true
 }

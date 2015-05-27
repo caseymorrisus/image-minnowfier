@@ -19,7 +19,7 @@ holder.ondrop = function(e) {
 	var files = e.dataTransfer.files;
 	//console.log('File you dragged here is ' + file.path);
 	imagePath = file.path;
-	//console.log(JSON.stringify(files, null, 4));
+	console.log(JSON.stringify(files, null, 4));
 	minifyImages(files);
 	return false;
 };
@@ -35,13 +35,32 @@ holder.ondrop = function(e) {
 
 // Get current options from file
 var option = $('#options > div');
-var options = JSON.parse(fs.readFileSync(__dirname + '/options.json'));
-
-function writeOptionsToFile(){
-	fs.writeFileSync(__dirname + '/options.json', JSON.stringify(options, null, 4));
+var options = {
+	replace: 		false,
+	addToFolder: 	true
 };
 
-function selectOptionFromFile(){
+readOptionsFromFile();
+
+function readOptionsFromFile() {
+	fs.readFile(__dirname + '/options.json', 'utf8', function(err, data) {
+		if (err) {
+			writeOptionsToFile(selectOptionsFromFile);
+		};
+		options = JSON.parse(data);
+		selectOptionsFromFile();
+	});
+};
+
+function writeOptionsToFile(callback){
+	fs.writeFile(__dirname + '/options.json', JSON.stringify(options, null, 4), function(err) {
+		if (err) throw err;
+		console.log("Wrote options to file.");
+		if (callback) callback();
+	});
+};
+
+function selectOptionsFromFile(){
 	var fileToSelect;
 	if(options.replace) {
 		fileToSelect = $('#replace');
@@ -50,10 +69,6 @@ function selectOptionFromFile(){
 	}
 	selectOption(fileToSelect);
 };
-
-selectOptionFromFile();
-
-
 
 // Options Select
 function selectOption(obj) {
